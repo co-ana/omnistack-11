@@ -1,6 +1,6 @@
 # omnistack-11
 
-Event provided by [RocketSeat](https://rocketseat.com.br/) Team.
+Event provided by [@RocketSeat](https://rocketseat.com.br/).
+Using this repo to take notes and commit small steps during classes. <br />
 
-I'm using this repo to take notes and commit small steps provided during classes. <br />
-Just to improve studies and reviews in the future. :) 
+> It's just to improve studies and reviews <
