@@ -28,6 +28,7 @@ form input {
   border: 1px solid #dcdce6;
   border-radius: 8px;
   padding: 0 24px;
+  margin-bottom: 8px;
 }
 
 .btn-red {
@@ -49,4 +50,23 @@ form input {
 
 .btn-red:hover {
   filter: brightness(90%);
+}
+
+.backlink {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  color: #41414d;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity ease-in-out .2s;
+}
+
+.backlink svg {
+  margin-right: 8px;
+}
+
+.backlink:hover {
+  opacity: .8;
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import { FiLogIn } from 'react-icons/fi' // Feather Icons
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-import logoImg from '../assets/logo.svg';
-import heroesImg from '../assets/heroes.png';
+import logoImg from '../../assets/logo.svg';
+import heroesImg from '../../assets/heroes.png';
 
 
 export default function Logon() {
@@ -17,10 +18,10 @@ export default function Logon() {
           <input placeholder="Sua ID" type="text"/>
           <button className='btn-red' type="submit">Entrar</button>
 
-          <a href='/register'>
+          <Link className="backlink" to='/register'>
             <FiLogIn size={16} color='#E02041' />
             Não tenho cadastro
-          </a>
+          </Link>
         </form>
       </section>
 
