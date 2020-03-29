@@ -5,6 +5,12 @@ const connection = require('./database/connection'); // Importa configurações 
 
 const routes = express.Router(); // instancia o pacote
 
+routes.get('/ongs', async (request, response) => {
+  const ongs = await connection('ongs').select('*');
+
+  return response.json(ongs);
+});
+
 routes.post('/ongs', async (request, response) => {
   const { name, email, whatsapp, city, uf } = request.body; // Garante que não receba qualquer dado inserido pelo user
   const id = crypto.randomBytes(4).toString('HEX'); // Cria id aleatório, com 4 números e converte para
