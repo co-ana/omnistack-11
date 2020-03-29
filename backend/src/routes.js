@@ -1,10 +1,13 @@
 const express = require('express'); // Pacote utilziado para criar as rotas
 
+const SessionController = require('./controllers/SessionController');
 const OngController = require('./controllers/OngController');
 const IncidentController = require('./controllers/IncidentController');
 const ProfileController = require('./controllers/ProfileController');
 
 const routes = express.Router(); // instancia o pacote
+
+routes.post('/sessions', SessionController.create);
 
 routes.get('/ongs', OngController.index);
 routes.post('/ongs', OngController.create);

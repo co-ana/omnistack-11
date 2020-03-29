@@ -2,7 +2,17 @@ const connection = require('../database/connection'); // Importa configurações
 
 module.exports = {
   async index(request, response){
-    const incidents = await connection('incidents').select('*');
+    const { page = 1 } = request.query;
+
+    const [count] = await connection('incidents').count();
+
+    // const incidents = await connection('incidents').select('*'); --> Lista todos os casos
+    const incidents = await connection('incidents') // --> Listagem com "filtro" para paginação
+      .limit(5)
+      .offset((page - 1) * 5)
+      .select('*')
+
+    response.header('X-Total-Count', count['count(*)']); // Retorna quantidade de casos cadastrados
 
     return response.json(incidents);
   },
