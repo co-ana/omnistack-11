@@ -6,15 +6,16 @@ import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
-export default function Register() {
+export default function NewIncident() {
   return (
-    <div className="register-container">
+    <div className="new-incident-container">
+
       <div className="content">
         <section>
           <img src={logoImg} alt="Be The Hero"/>
 
-          <h1>Cadastro</h1>
-          <p>Faça o seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
+          <h1>Cadastrar novo caso</h1>
+          <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
 
           <Link className="backlink" to="/">
             <FiArrowLeft size={16} color="#E02041" />
@@ -23,14 +24,8 @@ export default function Register() {
         </section>
 
         <form action="">
-          <input type="text" placeholder="Nome da ONG" />
-          <input type="email" placeholder="E-mail" />
-          <input type="text" placeholder="Whatsapp" />
-          <div className="input-group">
-            <input type="text" placeholder="Cidade" />
-            <input type="text" placeholder="UF" style={{ width: 80 }} />
-          </div>
-
+          <input type="text" placeholder="Título do caso" />
+          <textarea cols="30" rows="4" placeholder="Descrição"></textarea>
           <button className='btn-red' type="submit">Cadastrar</button>
         </form>
       </div>
