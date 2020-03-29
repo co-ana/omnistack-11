@@ -1,15 +1,25 @@
-const express = require('express'); // importa o pacote
+const express = require('express'); // Pacote utilziado para criar as rotas
+const crypto = require('crypto'); // Utilizado para criar ID aleatório
+
+const connection = require('./database/connection'); // Importa configurações do knexfile
+
 const routes = express.Router(); // instancia o pacote
 
-routes.post('/users', (request, response) => {
+routes.post('/ongs', async (request, response) => {
+  const { name, email, whatsapp, city, uf } = request.body; // Garante que não receba qualquer dado inserido pelo user
+  const id = crypto.randomBytes(4).toString('HEX'); // Cria id aleatório, com 4 números e converte para
 
-  const body = request.body;
-  console.log(body)
-
-  return response.json({
-    evento: 'Semana OmniStack 11.0',
-    aluno: 'Ana C.'
+  // Vai aguardar a execução dessa função
+  await connection('ongs').insert({
+    id,
+    name,
+    email,
+    whatsapp,
+    city,
+    uf
   })
+
+  return response.json({ id });
 });
 
 module.exports = routes; // Disponibiliza as rotas para importarmos no file ./index.js
