@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
-import heroesImg from '../../assets/heroes.png';
-
 
 export default function Register() {
   return (

@@ -70,3 +70,11 @@ form input {
 .backlink:hover {
   opacity: .8;
 }
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.sr-only {
+  display: none;
+}
