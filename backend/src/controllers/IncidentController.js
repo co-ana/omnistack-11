@@ -7,7 +7,7 @@ module.exports = {
     const [count] = await connection('incidents').count();
 
     const incidents = await connection('incidents')
-      .join('ongs', 'ongs.id', '=', 'incidents.ong_id') // Relaciona as duas tabelas
+      .join('ongs', 'ongs.id', '=', 'ong_id') // Relaciona as duas tabelas
       .limit(5)
       .offset((page - 1) * 5) // Listagem com "filtro" para paginação
       .select([

@@ -6,6 +6,10 @@
   margin: 32px auto;
 }
 
+.profile-container h1 {
+  margin: 72px 0 24px;
+}
+
 .profile-container header {
   display: flex;
   align-items: center;
@@ -39,7 +43,6 @@
 .profile-container header button:hover {
   border-color: #999999;
 }
-
 
 .profile-container ul {
   display: grid;

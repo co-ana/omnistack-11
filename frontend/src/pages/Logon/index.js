@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi' // Feather Icons
-import { Link } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import './styles.css';
 
@@ -9,13 +11,36 @@ import heroesImg from '../../assets/heroes.png';
 
 
 export default function Logon() {
+  const [id, setId] = useState('');
+  const history = useHistory();
+
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.post('sessions', { id });
+
+      localStorage.setItem('ongId', id);
+      localStorage.setItem('ongName', response.data.name); // Armazenar isso no navegador, pois precisa ficar disponivel em toda a aplicação; 
+
+      history.push('/profile');
+    } catch(err) {
+      alert('Falha no login! Tente novamente.');
+    }
+  }
+
   return (
     <div className="logon-container">
       <section className="form">
         <img src={logoImg} alt="Be The Hero"/>
 
-        <form action="">
-          <input placeholder="Sua ID" type="text"/>
+        <form action="" onSubmit={handleLogin}>
+          <input
+            placeholder="Sua ID"
+            type="text"
+            value={id}
+            onChange={e => setId(e.target.value)}
+          />
           <button className='btn-red' type="submit">Entrar</button>
 
           <Link className="backlink" to='/register'>
