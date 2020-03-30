@@ -1,4 +1,5 @@
 const express = require('express'); // importa o pacote
+const cors = require('cors'); // importa o pacote
 const routes = require('./routes'); // importa rotas
 
 const app = express(); // instancia o pacote
