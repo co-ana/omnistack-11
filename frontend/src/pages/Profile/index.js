@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi' // Feather Icons
 
 import api from '../../services/api';
@@ -11,6 +11,7 @@ import logoImg from '../../assets/logo.svg';
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
 
+  const history = useHistory();
   const ongId = localStorage.getItem('ongId');
   const ongName = localStorage.getItem('ongName');
 
@@ -23,7 +24,7 @@ export default function Profile() {
       headers: {
         Authorization: ongId
       }
-    }).then(response =>{
+    }).then(response => {
       setIncidents(response.data);
     })
   }, [ongId]);
@@ -38,11 +39,16 @@ export default function Profile() {
       })
 
       // Após deletar a causa atualiza a página, contendo nova lista de casos;
-      setIncidents(incidents.filter(incident => incident.id != id));
+      setIncidents(incidents.filter(incident => incident.id !== id));
 
     } catch(err) {
       alert('Erro ao deletar o caso, tente novamente.');
     }
+  }
+
+  function handleLogout() {
+    localStorage.clear(); // Remove o storage! :D
+    history.push('/'); // Redirect pra home
   }
 
   return (
@@ -52,7 +58,7 @@ export default function Profile() {
         <span>Bem vinda, {ongName}</span>
 
         <Link className='btn-red' to='/incidents/new'>Cadastrar novo caso</Link>
-        <button>
+        <button onClick={handleLogout} type="button">
           <FiPower size={18} color="E02041" />
         </button>
       </header>

@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi' // Feather Icons
-import { Link } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
+  const [title, setTitle] = useState('');
+  const [description , setDescription] = useState('');
+  const [value , setValue] = useState('');
+
+  const history = useHistory();
+  const ongId = localStorage.getItem('ongId');
+
+  async function handleNewIncident(e) {
+    e.preventDefault();
+
+    const data = {
+      title,
+      description,
+      value
+    }
+
+    try {
+      await api.post('incidents', data, {
+        headers: {
+          Authorization: ongId
+        }
+      })
+
+      history.push('/profile');
+    } catch (err) {
+      alert('Erro ao cadastrar caso, tente novamente.');
+    }
+  }
+
   return (
     <div className="new-incident-container">
 
@@ -23,9 +54,26 @@ export default function NewIncident() {
           </Link>
         </section>
 
-        <form action="">
-          <input type="text" placeholder="Título do caso" />
-          <textarea cols="30" rows="4" placeholder="Descrição"></textarea>
+        <form action="" onSubmit={handleNewIncident}>
+          <input
+            type="text"
+            placeholder="Título do caso"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <textarea
+            cols="30"
+            rows="4"
+            placeholder="Descrição"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Valor em reais"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+          />
           <button className='btn-red' type="submit">Cadastrar</button>
         </form>
       </div>
